@@ -1,0 +1,18 @@
+<%- model_class = Match -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:player_red_id) %>:</strong></dt>
+  <dd><%= @match.player_red_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:player_blue_id) %>:</strong></dt>
+  <dd><%= @match.player_blue_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:player_red_score) %>:</strong></dt>
+  <dd><%= @match.player_red_score %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:player_blue_score) %>:</strong></dt>
+  <dd><%= @match.player_blue_score %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              root_path, :class => 'btn btn-default'  %>
