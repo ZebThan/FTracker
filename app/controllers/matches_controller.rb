@@ -27,12 +27,15 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
 
       respond_to do |format|
-        if @match.player_red != @match.player_blue
-            if @match.save
+        #player can't play against himself, and exacly one player have to got 10 points. Players can't have same score.
+        if (@match.player_red != @match.player_blue) && (@match.player_red_score != @match.player_blue_score) && ((@match.player_red_score == 10) || (@match.player_blue_score == 10))
+              if @match.save
               format.html { redirect_to @match, notice: 'Match was successfully created.' }
-            format.json { render :show, status: :created, location: @match }
-            end
-
+              format.json { render :show, status: :created, location: @match }
+              else
+              format.html { render :new }
+              format.json { render json: @match.errors, status: :unprocessable_entity }
+              end
         else
           format.html { render :new }
           format.json { render json: @match.errors, status: :unprocessable_entity }
