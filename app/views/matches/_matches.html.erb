@@ -1,0 +1,18 @@
+<%- model_class = Match -%>
+<table class="table table-striped">
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td align = right> <%= image_tag match.player_red.avatar(:thumb)%></td>
+        <td align = left width=100 height=25><%= link_to match.player_red, match.player_red%></td>
+        <td align = center>VS</td>
+        <td align = right><%= image_tag match.player_blue.avatar(:thumb)%></td>
+        <td align = left width=100><%=link_to match.player_blue, match.player_blue %></td>
+        <td align=center><%= match.player_red_score%>:<%= match.player_blue_score %></td>
+        <td><%=l match.created_at %></td>
+        <td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

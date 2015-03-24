@@ -1,15 +1,18 @@
 <%- model_class = Player -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+<table>
+<tr><td> <%=image_tag @player.avatar(:medium) %>
+<td valign = top><table>
+<tr><td><strong><%=@player%></strong></td></tr>
+<tr><td>Wins: <%= @player.wins%></td></tr>
+<tr><td>Loses: <%= @player.loses%> </td></tr>
+<tr><td>Win ratio: <%= @player.ratio%></td></tr>
+<tr><td>Longest win streak: <%= @player.win_streak%></td></tr>
+<tr><td>Avarage points per game: <%= @player.avarage_points%> </td></tr>
+<tr><td>Place in ranking: </td></tr>
+</table></td></tr>
+</table>
 
-<dl class="dl-horizontal">
-  <dd><%=image_tag @player.avatar(:medium) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
-  <dd><%= @player.first_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
-  <dd><%= @player.last_name %></dd>
-</dl>
+<%= render partial: 'matches/matches', locals: {matches: @matches} %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               root_path, :class => 'btn btn-default'  %>
