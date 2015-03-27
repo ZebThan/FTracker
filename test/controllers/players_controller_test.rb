@@ -34,11 +34,6 @@ class PlayersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update player" do
-    patch :update, id: @player, player: { first_name: @player.first_name, last_name: @player.last_name }
-    assert_redirected_to player_path(assigns(:player))
-  end
-
   test "should destroy player" do
     assert_difference('Player.count', -1) do
       delete :destroy, id: @player

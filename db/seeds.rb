@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 20.times  do
-	u = Player.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+	u = Player.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, elo: 1000)
 	puts "Dodano gracza"
 	end

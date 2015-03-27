@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319224618) do
+ActiveRecord::Schema.define(version: 20150324153921) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "player_red_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150319224618) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "elo"
   end
 
 end

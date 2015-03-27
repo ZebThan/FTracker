@@ -5,11 +5,13 @@
 <tr><td><strong><%=@player%></strong></td></tr>
 <tr><td>Wins: <%= @player.wins%></td></tr>
 <tr><td>Loses: <%= @player.loses%> </td></tr>
-<tr><td>Win ratio: <%= @player.ratio%></td></tr>
+<tr><td>Win ratio: <%= @player.ratio%>%</td></tr>
 <tr><td>Longest win streak: <%= @player.win_streak%></td></tr>
 <tr><td>Avarage points per game: <%= @player.avarage_points%> </td></tr>
-<tr><td>Place in ranking: </td></tr>
-</table></td></tr>
+<tr><td>Elo: <%= @player.elo%> </td></tr>
+<tr><td>Place in ranking: <%= @player.place_in_ranking %></td></tr>
+</table></td>
+</tr>
 </table>
 
 <%= render partial: 'matches/matches', locals: {matches: @matches} %>

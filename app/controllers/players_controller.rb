@@ -4,13 +4,13 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.all.order('elo DESC')
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
-    @matches = Match.players_matches(@player.id)
+    @matches = Match.players_matches(@player.id).last(5)
   end
 
   # GET /players/new
@@ -26,7 +26,7 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-
+    @player.elo = 1000
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }

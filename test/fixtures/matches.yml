@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  player_red_id: 
-  player_blue_id: 
+  player_red_id: 1 
+  player_blue_id: 2
   player_red_score: 
   player_blue_score: 
 
 two:
-  player_red_id: 
-  player_blue_id: 
+  player_red_id: 1
+  player_blue_id: 2
   player_red_score: 
   player_blue_score: 

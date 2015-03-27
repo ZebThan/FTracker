@@ -5,12 +5,6 @@ class MatchesControllerTest < ActionController::TestCase
     @match = matches(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:matches)
-  end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -32,11 +26,6 @@ class MatchesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @match
     assert_response :success
-  end
-
-  test "should update match" do
-    patch :update, id: @match, match: { player_blue_id: @match.player_blue_id, player_blue_score: @match.player_blue_score, player_red_id: @match.player_red_id, player_red_score: @match.player_red_score }
-    assert_redirected_to match_path(assigns(:match))
   end
 
   test "should destroy match" do

@@ -2,6 +2,10 @@ class Player < ActiveRecord::Base
 
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "25x25>" }, :default_url => "avatars/:style/missing.jpg"
   	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  	validates :last_name, :length => {:in => 2...15}
+  	validates :first_name, :length => {:in => 2...15}
+  	validates :elo, :presence => :true
+
 
 	def to_s
 		first_name + " " + last_name
@@ -23,7 +27,10 @@ class Player < ActiveRecord::Base
 	end
 
 	def ratio
-		 r = (wins)/@matches.size*100
+		 if @matches.size == 0
+		 	return @matches.size
+		 end
+		 r = (wins*100)/@matches.size
 		return r
 
 	end
@@ -61,8 +68,22 @@ class Player < ActiveRecord::Base
 				points = points + match.player_blue_score
 		end
 		end
-		points = 1.0*points/@matches.size
+		points = points.to_f
+		points = points/@matches.size
 		return points
+	end
+
+	def place_in_ranking
+		players  = Player.where('elo>=?', elo).order('elo DESC')
+		difference = 0
+		players.reverse_each do |player|
+			if player.id != id
+				difference = difference + 1
+			else
+				break
+			end
+		end
+        players.count - difference
 	end
 
 end
