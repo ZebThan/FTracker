@@ -54,10 +54,6 @@ class Player < ActiveRecord::Base
 		longest_streak
 	end
 
-
-
-
-
 	def avarage_points
 		matches = Match.players_matches(id)
 		points = 0
@@ -66,11 +62,11 @@ class Player < ActiveRecord::Base
 				points = points + match.player_red_score
 			else
 				points = points + match.player_blue_score
-		end
+			end
 		end
 		points = points.to_f
 		points = points/@matches.size
-		return points
+		return points.round(2)
 	end
 
 	def place_in_ranking

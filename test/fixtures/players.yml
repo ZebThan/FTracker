@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString
-  last_name: MyString
+  first_name: Adam
+  last_name: Nowak
+  elo: 1000
 
 two:
-  first_name: MyString
-  last_name: MyString
+  first_name: Jan
+  last_name: Kowalski
+  elo: 1000

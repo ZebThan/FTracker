@@ -1,6 +1,5 @@
-kclass MatchesController < ApplicationController
+class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-
   # GET /matches
   # GET /matches.json
   def index
@@ -28,7 +27,6 @@ kclass MatchesController < ApplicationController
 
       respond_to do |format|
               if @match.save
-              elo_change
               format.html { redirect_to @match, notice: 'Match was successfully created.' }
               format.json { render :show, status: :created, location: @match }
               else
@@ -57,20 +55,4 @@ kclass MatchesController < ApplicationController
       params.require(:match).permit(:player_red_id, :player_blue_id, :player_red_score, :player_blue_score)
     end
 
-    def elo_change
-        if @match.player_red_score == 10
-          winner = @match.player_red
-          loser = @match.player_blue
-          loser_score = @match.player_blue_score
-        else
-          winner = @match.player_blue
-          loser = @match.player_red
-          loser_score = @match.player_red_score
-        end
-        elo_difference = (1.3*loser.elo/winner.elo)*(20-loser_score)
-        winner.elo = winner.elo + elo_difference
-        loser.elo = loser.elo - elo_difference*0.75
-        winner.save
-        loser.save
-    end
 end

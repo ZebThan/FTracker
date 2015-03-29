@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class PlayerTest < ActiveSupport::TestCase
+
+	setup do
+	@p1 = Player.create(first_name: 'Adam', last_name: 'Nowak', elo: '1000')
+	@p2 = Player.create(first_name: 'Jan', last_name: 'Kowalski', elo: '1000')
+	@m = Array.new(20) {Match.new(player_red_id: @p1.id, player_blue_id: @p2.id)}
+	end
    
    test "should not saved without, to long, or to short a first name" do
    	 player = Player.create(last_name: "test", elo: "50")
@@ -21,14 +27,14 @@ class PlayerTest < ActiveSupport::TestCase
     end
 
      test "should not saved without an elo" do
-   	 player = Player.create(first_name: "test", last_name: "1000")
+   	 player = Player.create(first_name: "test", last_name: "test")
      assert_not player.save 
      end
 
      	test "win/lose counter, ratio" do
-			player_1 = Player.create(first_name: 'Adam', last_name: 'Nowak', elo: '100')
-			player_2 = Player.create(first_name: 'Jan', last_name: 'Kowalski', elo: '69')
-		matches = Array.new(20) {Match.new(player_red_id: player_1.id, player_blue_id: player_2.id)}
+     		player_1 = @p1
+     		player_2 = @p2
+     		matches = @m
 		10.times do |n|
 			matches[n-1].player_red_score = 10
 			matches[n-1].player_blue_score = n-1
@@ -60,9 +66,9 @@ class PlayerTest < ActiveSupport::TestCase
 	end
 
 	test "win streak" do
-		player_1 = Player.create(first_name: 'Adam', last_name: 'Nowak', elo: '100')
-		player_2 = Player.create(first_name: 'Jan', last_name: 'Kowalski', elo: '69')
-		matches = Array.new(20) {Match.new(player_red_id: player_1.id, player_blue_id: player_2.id)}
+		player_1 = @p1
+     		player_2 = @p2
+     		matches = @m
 		3.times do |n|
 			matches[n-1].player_red_score = 10
 			matches[n-1].player_blue_score = 5
